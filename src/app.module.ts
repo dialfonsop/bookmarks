@@ -8,6 +8,7 @@ import { BookmarkModule } from './bookmark/bookmark.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { PrismaModule } from './prisma/prisma.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -20,6 +21,9 @@ import { PrismaModule } from './prisma/prisma.module';
       database: 'bookmarks',
       entities: ["dist/**/*.entity{.ts,.js}"],
       synchronize: true,
+    }),
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
     AuthModule,
     UserModule,
